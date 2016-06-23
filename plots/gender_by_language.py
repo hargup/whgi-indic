@@ -10,7 +10,8 @@ from bokeh.models import (HoverTool,
 
 from .utils import write_plot, read_data, fix_nan_inf
 
-indic_languages = ["hi", "bh", "mai", "ta", "sa", "ml", "gu", "ur", "ne", "new", "as", "pa"]
+indic_languages = ["hi", "bh", "mai", "ta", "sa", "ml",
+                   "gu", "ur", "ne", "new", "as", "pa"]
 
 # The csv for language codes and their English is taken from
 # http://wikistats.wmflabs.org/
@@ -39,13 +40,14 @@ def plot(newest_changes):
 
     del df['nan']
 
+
     df['total'] = df.sum(axis=1)
     df['nonbin'] = df['total'] - df['male'] - df['female']
     df['fem_per'] = (df['female']*100 / (df['total'])).round(2)
     df['nonbin_per'] = (df['nonbin']*100 / df['total']).round(2)
 
     # take only top 50 entries
-    dfs = df.sort_values('total', ascending=False).head(50)
+    dfs = df.sort_values('total', ascending=False)
     fsort_dfs = dfs.sort_values('fem_per', ascending=False)
     cutoff = fsort_dfs[['total', 'female', 'fem_per']].reset_index()
     cutoff_plot = cutoff[cutoff['total'] > 0]
@@ -89,8 +91,8 @@ def plot(newest_changes):
 
     # rename columns and generate top/bottom tables
     cutoff.columns = ['Wiki', 'Total', 'Female', 'Female (%)']
-    top_rows = cutoff.head(10)
-    bottom_rows = cutoff[::-1].head(10)
+    top_rows = cutoff
+    bottom_rows = cutoff[::-1]
 
     table = [top_rows, bottom_rows]
 
