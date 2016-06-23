@@ -12,8 +12,8 @@
 
 # Biography Gender Gap in Indic Wikipedias
 
-This plot shows the Wikipedia in Indic Languages by number of gendered
-biographies, and compares their number of gendered biographies to female
+This plot shows Wikipedias in Indic Languages by number of gendered
+biographies, and compares the number of gendered biographies to female
 percentage of those biographies.
 
 The changes show the *number of biographies* added and the *female percentage
