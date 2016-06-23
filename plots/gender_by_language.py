@@ -10,12 +10,13 @@ from bokeh.models import (HoverTool,
 
 from .utils import write_plot, read_data, fix_nan_inf
 
+indic_languages = ["hi", "bh", "mai", "ta", "sa", "ml", "gu", "ur", "ne", "new", "as", "pa"]
 
 # The csv for language codes and their English is taken from
 # http://wikistats.wmflabs.org/
 wikis = pd.DataFrame.from_csv('./plots/wikipedias.csv')
 langdict = dict([(code.replace('-', '_')+'wiki', name) for code, name in
-                 zip(wikis.lang, wikis.id)])
+                 zip(wikis.lang, wikis.id) if code in indic_languages])
 
 
 @write_plot('language')
